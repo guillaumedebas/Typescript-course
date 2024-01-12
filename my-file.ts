@@ -52,4 +52,14 @@ type Hero = Character & {
 // interface Hero extends Character {
 //     pet?: Pet;
 // };
+type ArrayOfNumbers = number[];
 
+//Les génériques
+type Shop<ItemsType> = {
+    name: string;
+    owner: Character;
+    items : Array<ItemsType>;
+};
+
+//type any never use ;-)
+//Type unknown 
