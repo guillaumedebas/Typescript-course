@@ -55,6 +55,12 @@ type Hero = Character & {
 type ArrayOfNumbers = number[];
 
 //Les génériques
+
+type Equipment = {
+    price: number;
+    attack?: number;
+    defense?: number;
+};
 type Shop<ItemsType> = {
     name: string;
     owner: Character;
@@ -63,3 +69,55 @@ type Shop<ItemsType> = {
 
 //type any never use ;-)
 //Type unknown 
+type Armory = Shop<Equipment>;
+type PetShop = Shop<Pet>;
+// // Équivalent du type générique, avec une interface
+// interface Shop<ItemType> {
+//     name: string;
+//     owner: Character;
+//     items: Array<ItemType>;
+// };
+
+function createShop<ItemsType>(name: string, owner: Character, items: Array<ItemsType>):
+Shop<ItemsType> {
+    return { name, owner, items};
+}
+
+const armory = createShop<Equipment>('My armory', {name: 'Bob', life: 100, attack: 1, defense: 2
+}, []);
+
+//utility types
+//*Partial<T>
+type Celibrity = {
+    // Toutes les propriétés sont requises (elles n'ont pas le signe "?")
+    name: string;
+    life: number;
+    attack: number;
+    defense: number;
+};
+const myCelibrity: Partial<Celibrity> = {
+    // On ne fournit que le nom, pas le reste des propriétés.
+    // On n'a pas d'erreur car "Partial" rend
+    // toutes les propriétés optionnelles.
+    name: 'Mario',
+};
+//*Record<KeyType, ValueType>
+// On définit un type représentant un objet dont les clés
+// sont des chaînes de caractères (n'importe lesquelles)
+// et les valeurs sont des nombres
+type CollectionOfNumbers = Record<string, number>;
+const stats: CollectionOfNumbers = {
+    age: 45,
+    life: 100,
+    magic: 10,
+    whateverTheNameItMustContainANumber: 20,
+};
+
+// On peut utiliser une union pour n'autoriser que des clés spécifiques
+type StatisticNames = 'life' | 'attack' | 'defense';
+const statistics: Record<StatisticNames, number> = {
+    life: 100,
+    attack: 10,
+    defense: 20,
+};
+//https://www.typescriptlang.org/docs/handbook/utility-types.html

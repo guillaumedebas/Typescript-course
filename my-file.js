@@ -18,14 +18,14 @@ const code2 = '4frqfd';
 const ten = 10; // Ok !
 function fightCreature(target) { }
 fightCreature('dragon'); //OK !
-//Alternatif :
-// interface Character {
+// // Équivalent du type générique, avec une interface
+// interface Shop<ItemType> {
 //     name: string;
-//     life: number;
-//     attack: number;
-//     defense: number;
+//     owner: Character;
+//     items: Array<ItemType>;
 // };
-// type Pet = Character;
-// interface Hero extends Character {
-//     pet?: Pet;
-// };
+function createShop(name, owner, items) {
+    return { name, owner, items };
+}
+const armory = createShop('My armory', { name: 'Bob', life: 100, attack: 1, defense: 2
+}, []);
