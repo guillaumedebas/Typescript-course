@@ -121,3 +121,4 @@ const statistics: Record<StatisticNames, number> = {
     defense: 20,
 };
 //https://www.typescriptlang.org/docs/handbook/utility-types.html
+//https://grafikart.fr/formations/typescript
